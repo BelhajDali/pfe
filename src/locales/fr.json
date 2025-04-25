@@ -1,0 +1,95 @@
+{
+  "dashboard": {
+    "title": "Tableau de bord",
+    "overview": "Vue d'ensemble",
+    "navigation": {
+      "analytics": "Analytiques",
+      "reports": "Rapports",
+      "settings": "Paramètres"
+    },
+    "realTime": "En temps réel",
+    "stats": {
+      "production": "Production",
+      "errors": "Erreurs",
+      "yield": "IA prédiction"
+    },
+    "productionOverTime": "Production au fil du temps",
+    "predicted": "Souhaité",
+    "actual": "Réelle",
+    "aiCamera": "Vue de la caméra 1A",
+    "detectionResults": "Résultats de prédiction",
+    "badlyPositioned": "Produit mal positionné",
+    "analyzeAgain": "Analyser à nouveau",
+    "recentAlerts": "Alertes récentes",
+    "defectDetected": "Ralentissement détecté sur la ligne 3",
+    "timeAgo": "Il y a 2 heures",
+    "userProfile": {
+      "title": "Profil utilisateur",
+      "role": "Rôle",
+      "status": "Statut",
+      "email": "Email",
+      "editProfile": "Modifier le profil",
+      "roles": {
+        "admin": "Administrateur",
+        "user": "Utilisateur"
+      },
+      "statuses": {
+        "pending": "En attente",
+        "approved": "Approuvé",
+        "rejected": "Rejeté"
+      }
+    }
+  },
+  "stats": {
+    "users": {
+      "title": "Utilisateurs totaux",
+      "subtitle": "Utilisateurs actifs ce mois"
+    },
+    "revenue": {
+      "title": "Revenus",
+      "subtitle": "Revenus mensuels"
+    },
+    "sessions": {
+      "title": "Sessions actives",
+      "subtitle": "Utilisateurs actuellement actifs"
+    },
+    "conversion": {
+      "title": "Taux de conversion",
+      "subtitle": "Sur le total des visiteurs"
+    },
+    "engagement": {
+      "title": "Engagement",
+      "subtitle": "Durée moyenne de session"
+    },
+    "retention": {
+      "title": "Rétention",
+      "subtitle": "Taux de rétention sur 30 jours"
+    }
+  },
+  "theme": {
+    "toggle": "Changer le thème",
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "production": {
+    "chart": {
+      "title": "Production mensuelle",
+      "subtitle": "Évolution de la production sur la période",
+      "legend": "Production actuelle",
+      "period": {
+        "6months": "6 mois",
+        "1year": "1 an"
+      },
+      "tooltip": {
+        "production": "Production",
+        "month": "Mois"
+      }
+    }
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "cameras": "Caméras",
+    "operators": "Opérateurs",
+    "settings": "Paramètres"
+  }
+} 

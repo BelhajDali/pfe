@@ -1,0 +1,82 @@
+{
+  "auth": {
+    "signIn": "Sign in to your account",
+    "signUp": "Create an account",
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "signingIn": "Signing in...",
+    "signingUp": "Signing up...",
+    "needAccount": "Need an account? Sign up",
+    "alreadyHaveAccount": "Already have an account? Sign in",
+    "forgotPassword": "Forgot your password?",
+    "resetPassword": "Reset Password",
+    "resetInstructions": "Enter your email address and we'll send you a link to reset your password.",
+    "resetEmailSent": "Password reset email sent! Please check your inbox.",
+    "invalidEmail": "Please enter a valid email address",
+    "passwordRequired": "Please enter your password",
+    "userNotFound": "No account found with this email",
+    "wrongPassword": "Incorrect password",
+    "tooManyRequests": "Too many attempts. Please try again later",
+    "networkError": "Network error. Please check your connection",
+    "signInFailed": "Sign in failed. Please try again",
+    "signUpFailed": "Sign up failed. Please try again",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "overview": "Overview",
+    "navigation": {
+      "analytics": "Analytics",
+      "reports": "Reports",
+      "settings": "Settings"
+    },
+    "userProfile": {
+      "title": "User Profile",
+      "role": "Role",
+      "status": "Status",
+      "email": "Email",
+      "editProfile": "Edit Profile",
+      "roles": {
+        "admin": "Administrator",
+        "user": "User"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      }
+    }
+  },
+  "stats": {
+    "users": {
+      "title": "Total Users",
+      "subtitle": "Active users this month"
+    },
+    "revenue": {
+      "title": "Revenue",
+      "subtitle": "Monthly revenue"
+    },
+    "sessions": {
+      "title": "Active Sessions",
+      "subtitle": "Current active users"
+    },
+    "conversion": {
+      "title": "Conversion Rate",
+      "subtitle": "From total visitors"
+    },
+    "engagement": {
+      "title": "Engagement",
+      "subtitle": "Average session duration"
+    },
+    "retention": {
+      "title": "Retention",
+      "subtitle": "30-day retention rate"
+    }
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark"
+  }
+} 
