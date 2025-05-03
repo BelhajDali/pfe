@@ -1,155 +1,187 @@
-import { RiCheckboxCircleLine, RiQuestionLine, RiBarChartBoxLine, RiAlertLine, RiTimeLine, RiAlertFill } from 'react-icons/ri';
-import StatCard from '../components/StatCard';
-import DailyReport from '../components/DailyReport';
-import ProductionStats from '../components/ProductionStats';
+import React from 'react';
+import { FiSearch } from 'react-icons/fi';
+import { FaRegUserCircle } from 'react-icons/fa';
+import { RiSunLine, RiMoonLine, RiBarChart2Line, RiAlertLine, RiUserSettingsLine, RiCalendar2Line } from 'react-icons/ri';
+import { useTranslation } from 'react-i18next';
+import { useTheme } from '../components/ThemeProvider';
+import CameraGrid from '../components/CameraGrid';
+import WorkerTable from '../components/WorkerTable';
+import RecentAlerts from '../components/RecentAlerts';
+import ProductionHistoryChart from '../components/ProductionHistoryChart';
 import AdminPanel from '../components/AdminPanel';
-import ProductionHistory from '../components/ProductionHistory';
+import DailyReportCard from '../components/DailyReportCard';
+import StatsExport from '../components/StatsExport';
+
+const mainTableData = [
+  { name: 'Amelia', current: 'Packing', status: 'On Time', timeLeft: '00:25' },
+  { name: 'Bob', current: 'Packing', status: 'Delayed', timeLeft: '01:12' },
+];
 
 const Dashboard = () => {
-  // Sample data - replace with real data from your backend
-  const stats = {
-    tasksDone: 120,
-    helpRequests: 5,
-    plannedVsActual: '300 / 275',
-    bottleneck: '10%'
-  };
+  const { t, i18n } = useTranslation();
+  const { theme, setTheme } = useTheme();
 
-  const dailyReport = {
-    date: 'April 25, 2024',
-    timeSpent: '4h 10m',
-    helpRequests: 2,
-    completionRate: '90%'
-  };
-
-  const productionStats = {
-    plannedUnits: 300,
-    actualUnits: 275,
-    delays: '15m',
-    topWorker: 'Amir',
-    avgTaskTime: '4m 33s'
-  };
-
-  const users = [
-    { email: 'john.doe@example.com' },
-    { email: 'jane.smith@example.com' },
-    { email: 'alice.jones@example.com' },
-    { email: 'bob.brown@example.com' }
-  ];
-
-  const productionHistory = {
-    labels: ['1', '2', '3', '4', '5', '6', '7'],
-    values: [2500, 1500, 10000, 5000, 5000, 4000, 5000]
-  };
-
-  const alerts = [
+  const statCards = [
     {
-      title: "Défaut détecté sur la ligne 3",
-      time: "Il y a 2 heures",
-      type: "error"
-    }
+      label: t('dailyProduction'),
+      value: '1,325',
+      icon: <RiBarChart2Line className="text-orange-500 w-7 h-7" />, // accent icon
+      change: '+5.4%',
+      changeColor: 'text-green-400',
+    },
+    {
+      label: t('downtime'),
+      value: '12 h',
+      icon: <RiCalendar2Line className="text-slate-500 w-7 h-7" />, // accent icon
+      change: '+0.8%',
+      changeColor: 'text-orange-400',
+    },
+    {
+      label: t('efficiency'),
+      value: '96 %',
+      icon: <RiBarChart2Line className="text-blue-500 w-7 h-7" />, // accent icon
+      change: '',
+      changeColor: '',
+    },
+    {
+      label: t('activeOperators'),
+      value: '8',
+      icon: <RiUserSettingsLine className="text-slate-500 w-7 h-7" />, // accent icon
+      change: '',
+      changeColor: '',
+    },
   ];
 
-  const handleEditUser = (email: string) => {
-    console.log('Edit user:', email);
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === 'en' ? 'fr' : 'en');
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard
-          icon={<RiCheckboxCircleLine size={24} />}
-          value={stats.tasksDone}
-          label="Tasks Done"
-          bgColor="bg-blue-600"
-        />
-        <StatCard
-          icon={<RiQuestionLine size={24} />}
-          value={stats.helpRequests}
-          label="Help Requests"
-          bgColor="bg-orange-500"
-        />
-        <StatCard
-          icon={<RiBarChartBoxLine size={24} />}
-          value={stats.plannedVsActual}
-          label="Planned vs Actual"
-          bgColor="bg-blue-600"
-        />
-        <StatCard
-          icon={<RiAlertLine size={24} />}
-          value={stats.bottleneck}
-          label="Bottleneck Prediction"
-          bgColor="bg-orange-500"
-        />
-      </div>
-
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Daily Report */}
-        <div className="bg-[#1E2A3B] rounded-lg p-6">
-          <h2 className="text-xl font-semibold mb-6 text-white">Rapport journalier</h2>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-[#2A3A4F] p-4 rounded-lg">
-              <div className="flex items-center gap-3 text-gray-400 mb-2">
-                <RiTimeLine className="text-blue-500" size={20} />
-                <span>Temps de production</span>
-              </div>
-              <div className="text-2xl font-bold text-white">4h 10m</div>
-            </div>
-            <div className="bg-[#2A3A4F] p-4 rounded-lg">
-              <div className="flex items-center gap-3 text-gray-400 mb-2">
-                <RiCheckboxCircleLine className="text-green-500" size={20} />
-                <span>Taux de complétion</span>
-              </div>
-              <div className="text-2xl font-bold text-white">90%</div>
-            </div>
-            <div className="bg-[#2A3A4F] p-4 rounded-lg">
-              <div className="flex items-center gap-3 text-gray-400 mb-2">
-                <RiQuestionLine className="text-orange-500" size={20} />
-                <span>Demandes d'aide</span>
-              </div>
-              <div className="text-2xl font-bold text-white">2</div>
-            </div>
-            <div className="bg-[#2A3A4F] p-4 rounded-lg">
-              <div className="flex items-center gap-3 text-gray-400 mb-2">
-                <RiAlertFill className="text-red-500" size={20} />
-                <span>Défauts détectés</span>
-              </div>
-              <div className="text-2xl font-bold text-white">1</div>
-            </div>
+    <div className="min-h-screen bg-[#151C2C] dark:bg-white text-white dark:text-gray-900 px-2 md:px-8 py-4 md:py-6 font-sans">
+      {/* Top Bar */}
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 md:gap-0 shadow-sm bg-[#151C2C] dark:bg-white sticky top-0 z-20 py-4 px-2 md:px-0" style={{boxShadow:'0 2px 8px 0 rgba(20,24,31,0.10)'}}>
+        <div className="flex items-center gap-4 w-full md:w-auto">
+          <h1 className="text-2xl font-bold tracking-tight whitespace-nowrap text-white dark:text-gray-900">LeoLAD</h1>
+          <div className="relative flex-1 max-w-lg w-full">
+            <FiSearch className="absolute left-3 top-3 text-gray-400 text-lg" />
+            <input
+              type="text"
+              placeholder={t('search')}
+              className="bg-[#202940] dark:bg-gray-100 pl-10 pr-4 py-3 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-400 text-white dark:text-gray-900 w-full shadow-sm"
+            />
           </div>
         </div>
-
-        {/* Recent Alerts */}
-        <div className="bg-[#1E2A3B] rounded-lg p-6">
-          <h2 className="text-xl font-semibold mb-6 text-white">Alertes récentes</h2>
-          <div className="space-y-4">
-            {alerts.map((alert, index) => (
-              <div key={index} className="bg-[#2A3A4F] p-4 rounded-lg">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  <span className="text-white font-medium">{alert.title}</span>
-                </div>
-                <div className="text-gray-400 text-sm">{alert.time}</div>
-              </div>
-            ))}
+        <div className="flex items-center gap-2 md:gap-4">
+          <StatsExport />
+          <button
+            onClick={toggleLanguage}
+            className="text-sm font-semibold px-3 py-2 rounded-lg bg-[#202940] dark:bg-gray-100 hover:bg-[#232C47] dark:hover:bg-gray-200 transition-colors text-white dark:text-gray-900"
+          >
+            {i18n.language === 'en' ? 'FR' : 'EN'}
+          </button>
+          <button
+            onClick={toggleTheme}
+            className="flex items-center justify-center px-3 py-2 rounded-lg bg-[#202940] dark:bg-gray-100 hover:bg-[#232C47] dark:hover:bg-gray-200 transition-colors text-white dark:text-gray-900"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? <RiSunLine size={20} /> : <RiMoonLine size={20} />}
+          </button>
+          <div className="flex items-center gap-2 bg-[#202940] dark:bg-gray-100 px-3 py-2 rounded-xl shadow-sm ml-2">
+            <FaRegUserCircle className="text-2xl text-gray-400 dark:text-gray-500" />
+            <span className="text-sm font-medium text-white dark:text-gray-900">John Doe</span>
           </div>
         </div>
       </div>
-
-      {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <DailyReport {...dailyReport} />
-        <ProductionStats {...productionStats} />
-        <AdminPanel users={users} onEdit={handleEditUser} />
+      {/* Stat Cards Row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        {statCards.map((card, idx) => (
+          <div key={idx} className="bg-[#202940] dark:bg-white rounded-2xl p-6 flex flex-col gap-2 shadow-lg min-h-[120px] group hover:shadow-xl transition-all cursor-pointer">
+            <div className="flex items-center gap-4 mb-2">
+              {card.icon}
+              <span className="text-base text-gray-400 dark:text-gray-500 font-medium group-hover:text-white dark:group-hover:text-gray-900 transition-colors">{card.label}</span>
+            </div>
+            <div className="text-3xl font-extrabold tracking-tight mb-1 text-white dark:text-gray-900 group-hover:text-blue-400 dark:group-hover:text-blue-500 transition-colors">{card.value}</div>
+            {card.change && (
+              <div className={`text-xs ${card.changeColor}`}>{card.change}</div>
+            )}
+          </div>
+        ))}
       </div>
-
-      {/* Production History Chart */}
-      <div className="w-full">
-        <ProductionHistory data={productionHistory} />
+      {/* Main Content: CameraGrid + MainTable */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+        <div className="lg:col-span-6 flex flex-col">
+          <div className="bg-[#202940] dark:bg-white rounded-2xl p-6 shadow-lg h-full flex flex-col">
+            <div className="flex items-center gap-2 mb-4">
+              <RiBarChart2Line className="text-blue-400 dark:text-blue-500 w-6 h-6" />
+              <h2 className="text-xl font-semibold text-white dark:text-gray-900">{t('cameraGrid')}</h2>
+            </div>
+            <CameraGrid />
+          </div>
+        </div>
+        <div className="lg:col-span-6 flex flex-col">
+          <div className="bg-[#202940] dark:bg-white rounded-2xl p-6 shadow-lg h-full flex flex-col">
+            <div className="flex items-center gap-2 mb-4">
+              <RiBarChart2Line className="text-purple-400 dark:text-purple-500 w-6 h-6" />
+              <h2 className="text-xl font-semibold text-white dark:text-gray-900">{t('mainTable')}</h2>
+            </div>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-gray-400 dark:text-gray-500">
+                  <th className="pb-2 text-left font-semibold">{t('name')}</th>
+                  <th className="pb-2 text-left font-semibold">{t('current')}</th>
+                  <th className="pb-2 text-left font-semibold">{t('status')}</th>
+                  <th className="pb-2 text-left font-semibold">{t('timeLeft')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mainTableData.map((row, idx) => (
+                  <tr key={idx} className={`border-t border-[#232C47] dark:border-gray-200 ${idx%2===0 ? 'bg-[#232C47]/40 dark:bg-gray-50' : ''} hover:bg-[#232C47]/80 dark:hover:bg-gray-100 transition-colors`}>
+                    <td className="py-2 font-semibold text-white dark:text-gray-900">{row.name}</td>
+                    <td className="py-2 text-white dark:text-gray-900">{t(`task.${row.current}`)}</td>
+                    <td className="py-2">
+                      <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                        row.status === 'On Time' ? 'text-green-400 bg-green-400/10 dark:text-green-700 dark:bg-green-100' : 
+                        row.status === 'Delayed' ? 'text-orange-400 bg-orange-400/10 dark:text-orange-700 dark:bg-orange-100' : 
+                        'text-gray-400 bg-gray-700/10 dark:text-gray-700 dark:bg-gray-100'
+                      }`}>{t(`statuses.${row.status}`)}</span>
+                    </td>
+                    <td className="py-2 text-white dark:text-gray-900">{row.timeLeft}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {/* Second Row: WorkerTable + RecentAlerts + DailyReport */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
+        <div className="lg:col-span-6 flex flex-col">
+          <div className="bg-[#202940] dark:bg-white rounded-2xl p-6 shadow-lg h-full flex flex-col">
+            <div className="flex items-center gap-2 mb-4">
+              <RiUserSettingsLine className="text-green-400 dark:text-green-500 w-6 h-6" />
+              <h2 className="text-xl font-semibold text-white dark:text-gray-900">{t('workerTable')}</h2>
+            </div>
+            <WorkerTable />
+          </div>
+        </div>
+        <div className="lg:col-span-3">
+          <RecentAlerts />
+        </div>
+        <div className="lg:col-span-3">
+          <DailyReportCard />
+        </div>
+      </div>
+      {/* Bottom Row: ProductionHistory, AdminPanel */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+        <div className="lg:col-span-6"><ProductionHistoryChart /></div>
+        <div className="lg:col-span-6"><AdminPanel /></div>
       </div>
     </div>
   );
 };
 
-export default Dashboard; 
+export default Dashboard;

@@ -7,6 +7,7 @@ import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import ForgotPassword from './pages/ForgotPassword'
 import Profile from './pages/Profile'
+import Reports from './pages/Reports'
 import './i18n'
 
 // Composant protégé qui vérifie l'authentification
@@ -49,6 +50,7 @@ function App() {
             
             <Route path="/" element={<ProtectedLayout><Dashboard /></ProtectedLayout>} />
             <Route path="/profile" element={<ProtectedLayout><Profile /></ProtectedLayout>} />
+            <Route path="/reports" element={<ProtectedLayout><Reports /></ProtectedLayout>} />
           </Routes>
         </Router>
       </ThemeProvider>

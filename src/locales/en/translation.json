@@ -1,0 +1,80 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "dailyProduction": "Daily Production",
+    "downtime": "Downtime",
+    "efficiency": "Efficiency",
+    "activeOperators": "Active Operators",
+    "search": "Search",
+    "cameraGrid": "Camera Grid",
+    "workerTable": "Worker Table",
+    "mainTable": "Main Table",
+    "name": "Name",
+    "current": "Current",
+    "status": "Status",
+    "timeLeft": "Time Left",
+    "progress": "Progress",
+    "online": "Online",
+    "offline": "Offline",
+    "edit": "Edit",
+    "user": "User",
+    "actions": "Actions",
+    "statistics": "Statistics",
+    "statistic": "Statistic",
+    "value": "Value",
+    "camera": {
+      "title": "Camera Feeds",
+      "status": {
+        "online": "Online",
+        "offline": "Offline"
+      },
+      "feeds": {
+        "mainEntrance": "Main Entrance",
+        "assemblyLine": "Assembly Line",
+        "warehouse": "Warehouse",
+        "loadingDock": "Loading Dock"
+      }
+    },
+    "statuses": {
+      "Completed": "Completed",
+      "In Progress": "In Progress",
+      "Pending": "Pending",
+      "On Time": "On Time",
+      "Delayed": "Delayed"
+    },
+    "task": {
+      "Assembly Line 1": "Assembly Line 1",
+      "Quality Check": "Quality Check",
+      "Packaging": "Packaging",
+      "Maintenance": "Maintenance",
+      "Packing": "Packing"
+    },
+    "location": {
+      "Building A": "Building A",
+      "Building B": "Building B",
+      "Floor 1": "Floor 1"
+    }
+  },
+  "profile": {
+    "title": "User Profile",
+    "changePhoto": "Change photo",
+    "username": "Username",
+    "email": "Email",
+    "phone": "Phone",
+    "language": "Language",
+    "role": "Role",
+    "password": "Password",
+    "changePassword": "Change password",
+    "saveChanges": "Save changes",
+    "successMessage": "Profile updated successfully!",
+    "errorMessage": "Error updating profile. Please try again.",
+    "languages": {
+      "english": "English",
+      "french": "French"
+    },
+    "roles": {
+      "user": "User",
+      "admin": "Admin"
+    }
+  }
+} 

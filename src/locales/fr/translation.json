@@ -1,0 +1,80 @@
+{
+  "dashboard": {
+    "title": "Tableau de bord",
+    "dailyProduction": "Production quotidienne",
+    "downtime": "Temps d'arrêt",
+    "efficiency": "Efficacité",
+    "activeOperators": "Opérateurs actifs",
+    "search": "Recherche",
+    "cameraGrid": "Grille de caméras",
+    "workerTable": "Table des opérateurs",
+    "mainTable": "Table principale",
+    "name": "Nom",
+    "current": "Tâche en cours",
+    "status": "Statut",
+    "timeLeft": "Temps restant",
+    "progress": "Progression",
+    "online": "En ligne",
+    "offline": "Hors ligne",
+    "edit": "Modifier",
+    "user": "Utilisateur",
+    "actions": "Actions",
+    "statistics": "Statistiques",
+    "statistic": "Statistique",
+    "value": "Valeur",
+    "camera": {
+      "title": "Flux des caméras",
+      "status": {
+        "online": "En ligne",
+        "offline": "Hors ligne"
+      },
+      "feeds": {
+        "mainEntrance": "Entrée principale",
+        "assemblyLine": "Ligne d'assemblage",
+        "warehouse": "Entrepôt",
+        "loadingDock": "Quai de chargement"
+      }
+    },
+    "statuses": {
+      "Completed": "Terminé",
+      "In Progress": "En cours",
+      "Pending": "En attente",
+      "On Time": "À l'heure",
+      "Delayed": "En retard"
+    },
+    "task": {
+      "Assembly Line 1": "Ligne d'assemblage 1",
+      "Quality Check": "Contrôle qualité",
+      "Packaging": "Emballage",
+      "Maintenance": "Maintenance",
+      "Packing": "Emballage"
+    },
+    "location": {
+      "Building A": "Bâtiment A",
+      "Building B": "Bâtiment B",
+      "Floor 1": "Étage 1"
+    }
+  },
+  "profile": {
+    "title": "Profil Utilisateur",
+    "changePhoto": "Changer la photo",
+    "username": "Pseudo",
+    "email": "Email",
+    "phone": "Téléphone",
+    "language": "Langue",
+    "role": "Rôle",
+    "password": "Mot de passe",
+    "changePassword": "Changer le mot de passe",
+    "saveChanges": "Enregistrer les modifications",
+    "successMessage": "Profil mis à jour avec succès !",
+    "errorMessage": "Erreur lors de la mise à jour du profil. Veuillez réessayer.",
+    "languages": {
+      "english": "Anglais",
+      "french": "Français"
+    },
+    "roles": {
+      "user": "Utilisateur",
+      "admin": "Administrateur"
+    }
+  }
+} 

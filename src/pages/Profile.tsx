@@ -93,8 +93,8 @@ const Profile = () => {
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <div className="bg-[#1E2A3B] rounded-lg p-8">
-        <h1 className="text-2xl font-bold text-white mb-8">Profil Utilisateur</h1>
+      <div className="bg-[#1E2A3B] dark:bg-white rounded-lg p-8">
+        <h1 className="text-2xl font-bold text-white dark:text-gray-900 mb-8">Profil Utilisateur</h1>
         
         {/* Messages d'erreur et de succès */}
         {error && (
@@ -111,7 +111,7 @@ const Profile = () => {
         {/* Avatar Section */}
         <div className="flex flex-col items-center mb-8">
           <div 
-            className="w-32 h-32 rounded-full bg-[#2A3A4F] mb-4 cursor-pointer overflow-hidden"
+            className="w-32 h-32 rounded-full bg-[#2A3A4F] dark:bg-gray-100 mb-4 cursor-pointer overflow-hidden"
             onClick={handleAvatarClick}
           >
             {profile.avatar ? (
@@ -134,7 +134,7 @@ const Profile = () => {
             onChange={handleFileChange}
           />
           <button 
-            className="text-blue-400 hover:text-blue-300 text-sm"
+            className="text-blue-400 dark:text-blue-600 hover:text-blue-300 dark:hover:text-blue-500 text-sm"
             onClick={handleAvatarClick}
           >
             Changer la photo
@@ -146,13 +146,13 @@ const Profile = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Username */}
             <div className="space-y-2">
-              <label className="text-gray-400 text-sm">Pseudo</label>
+              <label className="text-gray-400 dark:text-gray-600 text-sm">Pseudo</label>
               <div className="relative">
                 <input
                   type="text"
                   value={profile.username}
                   onChange={handleInputChange('username')}
-                  className="w-full bg-[#2A3A4F] text-white rounded-lg py-2 px-4 pl-10"
+                  className="w-full bg-[#2A3A4F] dark:bg-gray-50 text-white dark:text-gray-900 rounded-lg py-2 px-4 pl-10"
                 />
                 <RiUser3Line className="absolute left-3 top-3 text-gray-400" />
               </div>
@@ -160,13 +160,13 @@ const Profile = () => {
 
             {/* Email */}
             <div className="space-y-2">
-              <label className="text-gray-400 text-sm">Email</label>
+              <label className="text-gray-400 dark:text-gray-600 text-sm">Email</label>
               <div className="relative">
                 <input
                   type="email"
                   value={profile.email}
                   onChange={handleInputChange('email')}
-                  className="w-full bg-[#2A3A4F] text-white rounded-lg py-2 px-4 pl-10"
+                  className="w-full bg-[#2A3A4F] dark:bg-gray-50 text-white dark:text-gray-900 rounded-lg py-2 px-4 pl-10"
                 />
                 <RiMailLine className="absolute left-3 top-3 text-gray-400" />
               </div>
@@ -174,13 +174,13 @@ const Profile = () => {
 
             {/* Phone */}
             <div className="space-y-2">
-              <label className="text-gray-400 text-sm">Téléphone</label>
+              <label className="text-gray-400 dark:text-gray-600 text-sm">Téléphone</label>
               <div className="relative">
                 <input
                   type="tel"
                   value={profile.phone}
                   onChange={handleInputChange('phone')}
-                  className="w-full bg-[#2A3A4F] text-white rounded-lg py-2 px-4 pl-10"
+                  className="w-full bg-[#2A3A4F] dark:bg-gray-50 text-white dark:text-gray-900 rounded-lg py-2 px-4 pl-10"
                 />
                 <RiPhoneLine className="absolute left-3 top-3 text-gray-400" />
               </div>
@@ -188,13 +188,13 @@ const Profile = () => {
 
             {/* Language */}
             <div className="space-y-2">
-              <label className="text-gray-400 text-sm">Langue</label>
+              <label className="text-gray-400 dark:text-gray-600 text-sm">Langue</label>
               <div className="relative">
                 <input
                   type="text"
                   value={profile.language}
                   onChange={handleInputChange('language')}
-                  className="w-full bg-[#2A3A4F] text-white rounded-lg py-2 px-4 pl-10"
+                  className="w-full bg-[#2A3A4F] dark:bg-gray-50 text-white dark:text-gray-900 rounded-lg py-2 px-4 pl-10"
                 />
                 <RiGlobalLine className="absolute left-3 top-3 text-gray-400" />
               </div>
@@ -202,13 +202,13 @@ const Profile = () => {
 
             {/* Role */}
             <div className="space-y-2">
-              <label className="text-gray-400 text-sm">Rôle</label>
+              <label className="text-gray-400 dark:text-gray-600 text-sm">Rôle</label>
               <div className="relative">
                 <input
                   type="text"
                   value={profile.role}
                   readOnly
-                  className="w-full bg-[#2A3A4F] text-white rounded-lg py-2 px-4 pl-10 cursor-not-allowed"
+                  className="w-full bg-[#2A3A4F] dark:bg-gray-50 text-white dark:text-gray-900 rounded-lg py-2 px-4 pl-10 cursor-not-allowed"
                 />
                 <RiTeamLine className="absolute left-3 top-3 text-gray-400" />
               </div>
@@ -216,9 +216,9 @@ const Profile = () => {
 
             {/* Password Change Button */}
             <div className="space-y-2">
-              <label className="text-gray-400 text-sm">Mot de passe</label>
+              <label className="text-gray-400 dark:text-gray-600 text-sm">Mot de passe</label>
               <button
-                className="w-full bg-[#2A3A4F] text-white rounded-lg py-2 px-4 flex items-center gap-2 hover:bg-[#3A4A5F]"
+                className="w-full bg-[#2A3A4F] dark:bg-gray-50 text-white dark:text-gray-900 rounded-lg py-2 px-4 flex items-center gap-2 hover:bg-[#3A4A5F] dark:hover:bg-gray-100"
               >
                 <RiLockPasswordLine className="text-gray-400" />
                 Changer le mot de passe

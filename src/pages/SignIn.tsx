@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { useTranslation } from 'react-i18next'
+import { RiLockLine, RiMailLine, RiEyeLine, RiEyeOffLine } from 'react-icons/ri'
 
 export default function SignIn() {
   const [email, setEmail] = useState('')
@@ -10,102 +12,121 @@ export default function SignIn() {
   const [loading, setLoading] = useState(false)
   const { signIn } = useAuth()
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
     if (!email) {
-      setError('Email requis')
+      setError(t('auth.invalidEmail'))
       return
     }
-
     if (!password) {
-      setError('Mot de passe requis')
+      setError(t('auth.passwordRequired'))
       return
     }
-
     try {
       setError('')
       setLoading(true)
       await signIn(email, password)
       navigate('/')
-    } catch (err: any) {
-      setError('An error occurred. Please try again')
-    } finally {
-      setLoading(false)
+    } catch (err) {
+      setError(t('auth.signInFailed'))
     }
+    setLoading(false)
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#0B1222]">
-      <div className="w-full max-w-md rounded-lg bg-[#1E293B] p-8">
-        <div className="mb-8 flex flex-col items-center">
-          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-orange-500">
-            <svg className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-          <h2 className="text-2xl font-semibold text-white">Sign in to your account</h2>
-        </div>
-
-        {error && (
-          <div className="mb-4 rounded-md bg-red-900/20 p-4 text-sm text-red-400">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 space-y-8">
           <div>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="block w-full rounded-lg border border-gray-700 bg-[#1E293B] py-3 px-4 text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
-              placeholder="Email address"
-            />
-          </div>
-
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="block w-full rounded-lg border border-gray-700 bg-[#1E293B] py-3 px-4 text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
-              placeholder="Password"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-3 flex items-center"
-            >
-              <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                {showPassword ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                )}
+            <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl mx-auto flex items-center justify-center transform -rotate-6 hover:rotate-0 transition-transform duration-300">
+              <svg
+                className="w-10 h-10 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
-            </button>
+            </div>
+            <h2 className="mt-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
+              {t('auth.signIn')}
+            </h2>
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-lg bg-orange-500 py-3 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-[#1E293B] disabled:opacity-50"
-          >
-            Sign in to your account
-          </button>
-        </form>
-
-        <div className="mt-6 flex flex-col items-center space-y-2 text-center text-sm">
-          <Link to="/signup" className="text-orange-500 hover:text-orange-400">
-            Need an account? Sign up
-          </Link>
-          <Link to="/forgot-password" className="text-orange-500 hover:text-orange-400">
-            Forgot your password?
-          </Link>
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+            {error && (
+              <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded-xl text-sm">
+                {error}
+              </div>
+            )}
+            <div className="space-y-4">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <RiMailLine className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={t('auth.email')}
+                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm transition-all duration-200"
+                />
+              </div>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <RiLockLine className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder={t('auth.password')}
+                  className="appearance-none block w-full pl-10 pr-10 py-3 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm transition-all duration-200"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-500"
+                >
+                  {showPassword ? <RiEyeOffLine className="h-5 w-5" /> : <RiEyeLine className="h-5 w-5" />}
+                </button>
+              </div>
+            </div>
+            <div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 transition-all duration-200 transform hover:-translate-y-0.5"
+              >
+                {loading ? t('auth.signingIn') : t('auth.signIn')}
+              </button>
+            </div>
+            <div className="text-sm text-center flex flex-col gap-2">
+              <Link
+                to="/signup"
+                className="font-medium text-orange-500 hover:text-orange-400 transition-colors duration-200"
+              >
+                {t('auth.needAccount')}
+              </Link>
+              <Link
+                to="/forgot-password"
+                className="font-medium text-orange-500 hover:text-orange-400 transition-colors duration-200"
+              >
+                {t('auth.forgotPassword')}
+              </Link>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   )
-} 
+}
